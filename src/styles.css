@@ -1,0 +1,184 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Fonts loaded via <link> in __root.tsx: Playfair Display + Inter */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-ivory: var(--ivory);
+  --color-ivory-deep: var(--ivory-deep);
+  --color-rose-gold: var(--rose-gold);
+  --color-rose-gold-soft: var(--rose-gold-soft);
+  --color-blush: var(--blush);
+  --color-champagne: var(--champagne);
+  --color-noir: var(--noir);
+
+  --font-display: "Playfair Display", "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Luxury bridal palette: ivory, blush, rose gold, deep noir */
+  --ivory: oklch(0.985 0.008 80);
+  --ivory-deep: oklch(0.96 0.012 75);
+  --blush: oklch(0.92 0.025 25);
+  --champagne: oklch(0.9 0.04 75);
+  --rose-gold: oklch(0.72 0.095 35);
+  --rose-gold-soft: oklch(0.82 0.06 35);
+  --noir: oklch(0.22 0.015 30);
+
+  --background: var(--ivory);
+  --foreground: var(--noir);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--noir);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--noir);
+  --primary: var(--rose-gold);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: var(--blush);
+  --secondary-foreground: var(--noir);
+  --muted: var(--ivory-deep);
+  --muted-foreground: oklch(0.45 0.02 30);
+  --accent: var(--champagne);
+  --accent-foreground: var(--noir);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.88 0.018 35 / 0.5);
+  --input: oklch(0.88 0.018 35);
+  --ring: var(--rose-gold);
+
+  --gradient-rose: linear-gradient(135deg, oklch(0.78 0.09 35) 0%, oklch(0.68 0.11 25) 100%);
+  --gradient-ivory: linear-gradient(180deg, oklch(0.985 0.008 80) 0%, oklch(0.95 0.018 30) 100%);
+  --gradient-glow: radial-gradient(circle at 30% 20%, oklch(0.85 0.07 30 / 0.4), transparent 60%);
+  --shadow-luxury: 0 30px 80px -20px oklch(0.5 0.08 30 / 0.18);
+  --shadow-soft: 0 8px 30px -8px oklch(0.5 0.08 30 / 0.12);
+  --shadow-glass: 0 8px 32px 0 oklch(0.5 0.08 30 / 0.1);
+}
+
+.dark {
+  --background: var(--noir);
+  --foreground: var(--ivory);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility glass {
+  background: oklch(1 0 0 / 0.55);
+  backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.6);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glass-dark {
+  background: oklch(0.22 0.015 30 / 0.6);
+  backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid oklch(1 0 0 / 0.1);
+}
+
+@utility text-gradient-rose {
+  background: var(--gradient-rose);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility btn-luxury {
+  background: var(--gradient-rose);
+  color: white;
+  padding: 0.95rem 2.25rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 30px -8px oklch(0.68 0.11 25 / 0.5);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -10px oklch(0.68 0.11 25 / 0.6);
+  }
+}
+
+@utility btn-ghost-luxury {
+  background: oklch(1 0 0 / 0.5);
+  backdrop-filter: blur(12px);
+  color: var(--noir);
+  border: 1px solid oklch(0.72 0.095 35 / 0.4);
+  padding: 0.95rem 2.25rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  &:hover {
+    background: oklch(1 0 0 / 0.8);
+    transform: translateY(-2px);
+  }
+}
+
+@utility eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rose-gold);
+  font-weight: 500;
+}
